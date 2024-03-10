@@ -2,7 +2,7 @@
 
 Aggregates data about a github org to inform a company score.
 
-### Installing
+### 🌻 Installing
 
 ```
 git clone git@github.com:mxbaylee/company-github-score.git
@@ -10,7 +10,18 @@ cd company-github-score
 npm install
 ```
 
-### Running
+### 🔏 Authenticating
+
+This repo uses a Github personal access token.
+
+* [Create an Token](https://github.com/settings/tokens)
+* Add the token to your environment file
+
+```
+export GH_TOKEN="princess.wiggles"
+```
+
+### 🥞 Running
 
 ```
 npm start -- wikimedia
@@ -35,7 +46,7 @@ Example output:
 }
 ```
 
-### Testing
+### 🍡 Testing
 
 ```
 npm test
