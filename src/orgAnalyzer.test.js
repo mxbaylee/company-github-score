@@ -67,7 +67,21 @@ describe('OrgAnalyzer', () => {
         { name: 'princess', language: 'puppy' },
       ]))
 
-      expect(await org.getTopLanguage(2)).toEqual('dogfood')
+      expect(await org.getTopLanguage()).toEqual('dogfood')
+    })
+
+    it('ignores null values', async () => {
+      const org = new OrgAnalyzer('princess', 'wiggles')
+      org.octokit.repos = vi.fn().mockReturnValue(Promise.resolve([
+        { name: 'venison', language: 'dogfood' },
+        { name: 'bullystick', language: 'dogfood' },
+        { name: 'princess', language: 'puppy' },
+        { name: 'bambi', language: null },
+        { name: 'rudolph', language: null },
+        { name: 'donner', language: null },
+      ]))
+
+      expect(await org.getTopLanguage()).toEqual('dogfood')
     })
   })
 })

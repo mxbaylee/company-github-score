@@ -104,6 +104,7 @@ export class OrgAnalyzer {
       let maxCount = 0
       let languageMap = {}
       return topRepos.reduce((topLanguage, { language: currentLanguage }) => {
+        if (!currentLanguage) return topLanguage
         // Increment count
         const languageCount = (languageMap[currentLanguage] || 0) + 1
         // Set new count
