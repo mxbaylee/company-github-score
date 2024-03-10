@@ -18,7 +18,7 @@ npm start -- wikimedia
 
 Example output:
 
-```json
+```js
 {
   metrics: {
     orgName: 'wikimedia',
