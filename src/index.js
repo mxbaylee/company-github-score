@@ -11,8 +11,15 @@ function pbcopy (data) {
 }
 
 const analyzer = new OrgAnalyzer(org, ghToken)
-
-analyzer.getMetrics().then((metrics) => {
+const startingLimit = await analyzer.octokit.rateLimit()
+analyzer.getMetrics().then(async (metrics) => {
+  const endingLimit = await analyzer.octokit.rateLimit()
+  console.log(
+    `😼 Rate Limit:`,
+    `[Used: ${startingLimit.remaining - endingLimit.remaining}]`,
+    `[Remaining: ${endingLimit.remaining}]`,
+    `[Until: ${new Date(endingLimit.reset * 1000).toLocaleString()}]`,
+  )
   console.log({ metrics })
   pbcopy([
     metrics.orgName,

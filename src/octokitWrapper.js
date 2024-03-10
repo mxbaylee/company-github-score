@@ -6,6 +6,12 @@ export class OctokitWrapper {
     this.cache = {}
   }
 
+  rateLimit () {
+    return this.octokit.request(`GET /rate_limit`).then(({ data }) => {
+      return data.resources.core
+    })
+  }
+
   org (orgName) {
     const cacheKey = `org/${orgName}`
     if (!this.cache[cacheKey]) {
