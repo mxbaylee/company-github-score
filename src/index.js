@@ -14,5 +14,16 @@ const analyzer = new OrgAnalyzer(org, ghToken)
 
 analyzer.getMetrics().then((metrics) => {
   console.log({ metrics })
-  pbcopy(`${metrics.orgName}\t${metrics.topLanguage}\t${metrics.followers}\t${metrics.topRepoStars}\t${metrics.topRepoForks}\t${metrics.topRepoCloseEvents12m}\t${metrics.topRepoCloseEvents3m}\t${metrics.topRepoCommitEvents12m}\t${metrics.topRepoCommitEvents3m}\t${metrics.topRepoTotal}\t${stdevTemp}\t${highTemp}\t${lowTemp}\t${overcastScore}\t${sunshineScore}`);
+  pbcopy([
+    metrics.orgName,
+    metrics.topLanguage,
+    metrics.followers,
+    metrics.topRepoStars,
+    metrics.topRepoForks,
+    metrics.topRepoCloseEvents12m,
+    metrics.topRepoCloseEvents3m,
+    metrics.topRepoCommitEvents12m,
+    metrics.topRepoCommitEvents3m,
+    metrics.topRepoTotal,
+  ].join('\t'))
 })
